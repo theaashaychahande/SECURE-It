@@ -1,9 +1,19 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import xgboost as xgb
 import os
 
 app = FastAPI(title="SECURE-it Backend API", description="AI scam detection inference service")
+
+# CORS — allow all origins so Flutter app can connect from any environment
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load model (globally so it mounts once on startup)
 model_path = os.path.join(os.path.dirname(__file__), "xgboost_fraud_model.json")
@@ -55,6 +65,11 @@ class TransactionData(BaseModel):
 @app.get("/")
 def read_root():
     return {"status": "online", "message": "SECURE-it Backend is running."}
+
+# Health check — Railway uses this to confirm the service is alive
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
 
 @app.post("/evaluate-risk")
 def evaluate_risk(data: TransactionData):
