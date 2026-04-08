@@ -3,7 +3,7 @@
 > An intelligent, zero-friction interoperability layer for proactive UPI transaction security.
 
 ## Overview
-SECURE-it is an advanced, non-intrusive Android security daemon designed to analyze and mitigate real-time fraudulent transactions across isolated UPI environments. By running asynchronously via system-level accessibility and overlay bridges, it provides a unified layer of proactive risk mitigation without modifying host application binaries.
+SECURE-it is an advanced, non-intrusive Android security daemon designed to analyze and mitigate real-time fraudulent transactions across isolated UPI environments. By running asynchronously via system-level accessibility and overlay bridges, it provides a unified layer of proactive risk mitigation without modifying host application binaries
 
 ## System Architecture
 
